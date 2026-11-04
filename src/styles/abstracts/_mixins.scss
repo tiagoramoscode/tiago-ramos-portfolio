@@ -1,0 +1,31 @@
+@use "sass:map";
+@use "tokens" as tokens;
+
+@mixin respond-to($breakpoint) {
+  $value: map.get(tokens.$breakpoints, $breakpoint);
+
+  @if $value == null {
+    @error "Unknown breakpoint `#{$breakpoint}`. Choose one of #{map.keys(tokens.$breakpoints)}.";
+  }
+
+  @media (min-width: $value) {
+    @content;
+  }
+}
+
+@mixin motion($property: all, $duration: base, $easing: standard) {
+  @if not map.has-key(tokens.$durations, $duration) {
+    @error "Unknown motion duration `#{$duration}`.";
+  }
+
+  @if not map.has-key(tokens.$easings, $easing) {
+    @error "Unknown motion easing `#{$easing}`.";
+  }
+
+  transition: $property var(--motion-duration-#{$duration})
+    var(--motion-easing-#{$easing});
+
+  @media (prefers-reduced-motion: reduce) {
+    transition-duration: 0.01ms;
+  }
+}

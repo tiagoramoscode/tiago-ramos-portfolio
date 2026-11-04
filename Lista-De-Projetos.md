@@ -34,4 +34,8 @@ Drawing:
 - Drawing & Collage: Abstraction & Expression Exercises
 - Efémero & Infinito - Concept Art/Arte Conceptual 
 
+Video Games:
+- Romon · RPG Fantasy
+
 Criação:
+

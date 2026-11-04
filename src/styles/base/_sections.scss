@@ -1,0 +1,109 @@
+@use "../abstracts" as styles;
+
+.site-shell {
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header,
+.site-footer {
+  background-color: var(--color-surface-dark);
+  color: var(--color-surface-light);
+}
+
+.site-header {
+  border-block-end: var(--border-width) solid var(--color-border-dark);
+}
+
+.site-footer {
+  border-block-start: var(--border-width) solid var(--color-border-dark);
+}
+
+.site-header__inner,
+.site-footer__inner,
+.section__inner {
+  width: min(100% - var(--space-4), var(--content-width));
+  margin-inline: auto;
+}
+
+.site-header__inner,
+.site-footer__inner {
+  padding-block: var(--space-3);
+}
+
+.site-header__title {
+  margin-block: 0;
+  color: var(--color-surface-light);
+  font-size: var(--font-size-h5);
+}
+
+.site-header__tagline,
+.site-footer__copyright {
+  margin-block: 0;
+  color: var(--color-surface-light);
+  font-size: var(--font-size-small);
+  letter-spacing: var(--letter-spacing-small);
+  line-height: var(--line-height-small);
+}
+
+.site-footer__inner--centered {
+  text-align: center;
+}
+
+.site-main {
+  flex: 1;
+}
+
+.section {
+  padding-block: var(--space-8);
+
+  @include styles.respond-to(lg) {
+    padding-block: var(--space-9);
+  }
+}
+
+.section__inner--centered {
+  text-align: center;
+}
+
+.section--dark {
+  background-color: var(--color-surface-dark);
+  color: var(--color-surface-light);
+}
+
+.section--dark :is(h1, h2, h3, h4, h5, h6, p) {
+  color: var(--color-surface-light);
+}
+
+.section--dark .quote {
+  color: var(--color-accent);
+}
+
+.hero__title {
+  margin-block: 0 var(--space-4);
+}
+
+.hero__description {
+  max-width: var(--content-copy-width);
+  margin: 0 auto var(--space-5);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-surface-light);
+  border-radius: var(--radius-large);
+  background-color: var(--color-surface-light);
+  box-shadow: var(--shadow-small);
+  color: var(--color-text);
+  font-weight: var(--font-weight-emphasis);
+  text-decoration: none;
+  @include styles.motion(all, fast);
+}
+
+.button:hover {
+  color: var(--color-primary);
+  box-shadow: var(--shadow-medium);
+}

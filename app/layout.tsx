@@ -1,7 +1,22 @@
-import "./globals.css";
-import { Inter } from "next/font/google";
+import "../src/styles/main.scss";
+import { DM_Serif_Display, Inter_Tight, Oswald } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const oswald = Oswald({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
+const interTight = Inter_Tight({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+const dmSerifDisplay = DM_Serif_Display({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-accent",
+  display: "swap",
+});
 
 export const metadata = {
   title: "Tiago Ramos — Portfolio",
@@ -11,17 +26,21 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-zinc-950 text-zinc-100 min-h-screen flex flex-col`}>
-        <header className="border-b border-zinc-800">
-          <div className="max-w-5xl mx-auto p-4">
-            <h1 className="text-xl font-semibold tracking-wide">Tiago Ramos</h1>
-            <p className="text-sm text-zinc-400">Art & Technology</p>
+      <body
+        className={`${oswald.variable} ${interTight.variable} ${dmSerifDisplay.variable} site-shell`}
+      >
+        <header className="site-header">
+          <div className="site-header__inner">
+            <h1 className="site-header__title">Tiago Ramos</h1>
+            <p className="site-header__tagline">Art & Technology</p>
           </div>
         </header>
-        <main className="flex-1">{children}</main>
-        <footer className="border-t border-zinc-800">
-          <div className="max-w-5xl mx-auto p-4 text-center text-sm text-zinc-500">
-            © {new Date().getFullYear()} Tiago Ramos & Cosmic Dust — All rights reserved
+        <main className="site-main">{children}</main>
+        <footer className="site-footer">
+          <div className="site-footer__inner site-footer__inner--centered">
+            <p className="site-footer__copyright">
+              © {new Date().getFullYear()} Tiago Ramos & Cosmic Dust — All rights reserved
+            </p>
           </div>
         </footer>
       </body>

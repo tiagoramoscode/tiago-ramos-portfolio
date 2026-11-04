@@ -1,0 +1,141 @@
+@use "sass:map";
+
+$colors: (
+  primary: #2f6bff,
+  text: #0b1b3a,
+  accent: #4de1ff,
+  surface-light: #ffffff,
+  surface-dark: #0b1b3a,
+  border-dark: #26385a,
+);
+
+$spacing: (
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 1.5rem,
+  5: 2rem,
+  6: 3rem,
+  7: 4rem,
+  8: 6rem,
+  9: 8rem,
+);
+
+$typography: (
+  h1: (
+    size: "clamp(2.75rem, 1.8rem + 4vw, 4.5rem)",
+    line-height: 1.05,
+    letter-spacing: -0.03em,
+  ),
+  h2: (
+    size: "clamp(2.25rem, 1.55rem + 3vw, 3.75rem)",
+    line-height: 1.1,
+    letter-spacing: -0.025em,
+  ),
+  h3: (
+    size: "clamp(1.875rem, 1.4rem + 2vw, 2.75rem)",
+    line-height: 1.15,
+    letter-spacing: -0.02em,
+  ),
+  h4: (
+    size: "clamp(1.5rem, 1.2rem + 1.25vw, 2rem)",
+    line-height: 1.2,
+    letter-spacing: -0.015em,
+  ),
+  h5: (
+    size: "clamp(1.25rem, 1.1rem + 0.65vw, 1.5rem)",
+    line-height: 1.3,
+    letter-spacing: -0.01em,
+  ),
+  h6: (
+    size: "clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem)",
+    line-height: 1.35,
+    letter-spacing: 0,
+  ),
+  body: (
+    size: "clamp(1rem, 0.96rem + 0.2vw, 1.125rem)",
+    line-height: 1.65,
+    letter-spacing: 0,
+  ),
+  small: (
+    size: "clamp(0.875rem, 0.85rem + 0.1vw, 0.9375rem)",
+    line-height: 1.5,
+    letter-spacing: 0.01em,
+  ),
+  quote: (
+    size: "clamp(1.5rem, 1.15rem + 1.5vw, 2.25rem)",
+    line-height: 1.35,
+    letter-spacing: 0,
+  ),
+);
+
+$durations: (
+  fast: 150ms,
+  base: 250ms,
+  slow: 400ms,
+);
+
+$easings: (
+  standard: cubic-bezier(0.2, 0, 0, 1),
+  emphasized: cubic-bezier(0.2, 0, 0, 1.2),
+  entrance: cubic-bezier(0, 0, 0.2, 1),
+);
+
+$breakpoints: (
+  sm: 40rem,
+  md: 48rem,
+  lg: 64rem,
+  xl: 80rem,
+);
+
+:root {
+  // WCAG AA contrast: text on light 17.0441:1, white on dark 17.0441:1, and accent on dark 10.9810:1 pass.
+  // Primary on light is 4.4988:1 (just below AA for normal text); primary on dark is 3.7886:1 (fails for normal text); accent on light is 1.5521:1 (fails AA). Accent is only used on dark surfaces.
+  @each $name, $value in $colors {
+    --color-#{$name}: #{$value};
+  }
+
+  @each $step, $value in $spacing {
+    --space-#{$step}: #{$value};
+  }
+
+  @each $level, $values in $typography {
+    --font-size-#{$level}: #{map.get($values, size)};
+    --line-height-#{$level}: #{map.get($values, line-height)};
+    --letter-spacing-#{$level}: #{map.get($values, letter-spacing)};
+  }
+
+  --font-heading: sans-serif;
+  --font-body: sans-serif;
+  --font-accent: serif;
+  --font-reserve: /* reservado */;
+  --content-width: 64rem;
+  --content-copy-width: 42rem;
+
+  @each $name, $value in $durations {
+    --motion-duration-#{$name}: #{$value};
+  }
+
+  @each $name, $value in $easings {
+    --motion-easing-#{$name}: #{$value};
+  }
+
+  --radius-small: 0.25rem;
+  --radius-medium: 0.75rem;
+  --radius-large: 1.5rem;
+  --radius-pill: 999px;
+
+  --font-weight-emphasis: 600;
+  --border-width: 1px;
+  --focus-outline-width: 0.1875rem;
+
+  --shadow-small: 0 0.25rem 1rem rgb(11 27 58 / 12%);
+  --shadow-medium: 0 0.75rem 2rem rgb(11 27 58 / 16%);
+  --shadow-large: 0 1.5rem 4rem rgb(11 27 58 / 20%);
+
+  --z-index-base: 0;
+  --z-index-raised: 1;
+  --z-index-overlay: 10;
+  --z-index-modal: 100;
+  --z-index-toast: 200;
+}
