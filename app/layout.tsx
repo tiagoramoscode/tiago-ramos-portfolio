@@ -25,13 +25,13 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-PT">
       <body
         className={`${oswald.variable} ${interTight.variable} ${dmSerifDisplay.variable} site-shell`}
       >
         <header className="site-header">
           <div className="site-header__inner">
-            <h1 className="site-header__title">Tiago Ramos</h1>
+            <p className="site-header__title">Tiago Ramos</p>
             <p className="site-header__tagline">Art & Technology</p>
           </div>
         </header>

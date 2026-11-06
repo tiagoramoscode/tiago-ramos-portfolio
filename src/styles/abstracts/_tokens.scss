@@ -88,6 +88,13 @@ $breakpoints: (
   xl: 80rem,
 );
 
+$hero: (
+  min-height: 100svh,
+  focus-desktop: center center,
+  focus-mobile: center center,
+  overlay: linear-gradient(to bottom, transparent 0%, var(--color-surface-dark) 60%),
+);
+
 :root {
   // WCAG AA contrast: text on light 17.0441:1, white on dark 17.0441:1, and accent on dark 10.9810:1 pass.
   // Primary on light is 4.4988:1 (just below AA for normal text); primary on dark is 3.7886:1 (fails for normal text); accent on light is 1.5521:1 (fails AA). Accent is only used on dark surfaces.
@@ -103,6 +110,10 @@ $breakpoints: (
     --font-size-#{$level}: #{map.get($values, size)};
     --line-height-#{$level}: #{map.get($values, line-height)};
     --letter-spacing-#{$level}: #{map.get($values, letter-spacing)};
+  }
+
+  @each $name, $value in $hero {
+    --hero-#{$name}: #{$value};
   }
 
   --font-heading: sans-serif;
