@@ -22,7 +22,4 @@ export interface CommunicationDesignProject extends BaseProject {
 
 export type Project = BaseProject | ITProject | CommunicationDesignProject; // Add others
 
-export interface ProjectsResponse {
-  results?: Project[];
-}
-
+export type ProjectsResponse = Project[] | { results?: Project[] };

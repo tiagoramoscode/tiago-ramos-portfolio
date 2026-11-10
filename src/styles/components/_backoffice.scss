@@ -1,0 +1,121 @@
+.backoffice {
+  min-height: 100svh;
+  padding: clamp(8rem, 14vh, 12rem) var(--space-4) var(--space-8);
+  background:
+    radial-gradient(ellipse at 85% 0%, rgb(77 225 255 / 10%), transparent 38%),
+    #050914;
+  color: var(--color-surface-light);
+}
+
+.backoffice__inner {
+  width: min(100%, 56rem);
+  margin-inline: auto;
+}
+
+.backoffice h1,
+.backoffice h2 {
+  color: var(--color-surface-light);
+}
+
+.backoffice h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.backoffice__intro,
+.backoffice__note {
+  max-width: 42rem;
+  color: rgb(255 255 255 / 76%);
+}
+
+.backoffice__note {
+  margin-block-start: var(--space-6);
+  font-size: var(--font-size-small);
+}
+
+.menu-manager {
+  margin-block-start: var(--space-6);
+}
+
+.menu-manager__form label {
+  display: block;
+  margin-block-end: var(--space-2);
+  font-weight: var(--font-weight-emphasis);
+}
+
+.menu-manager__add {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.menu-manager__add input {
+  min-width: 0;
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgb(255 255 255 / 30%);
+  border-radius: var(--radius-small);
+  background: rgb(255 255 255 / 8%);
+  color: var(--color-surface-light);
+}
+
+.menu-manager__add input::placeholder {
+  color: rgb(255 255 255 / 54%);
+}
+
+.menu-manager button {
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-small);
+  background: transparent;
+  color: var(--color-surface-light);
+  cursor: pointer;
+}
+
+.menu-manager button:hover:not(:disabled) {
+  background: var(--color-accent);
+  color: var(--color-surface-dark);
+}
+
+.menu-manager button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.menu-manager h2 {
+  margin-block: var(--space-6) var(--space-3);
+  font-size: var(--font-size-h4);
+}
+
+.menu-manager__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu-manager__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-block: var(--space-3);
+  border-block-end: 1px solid rgb(255 255 255 / 18%);
+}
+
+.menu-manager__empty,
+.menu-manager__feedback {
+  color: rgb(255 255 255 / 76%);
+}
+
+.menu-manager__feedback--error {
+  color: #ff9a9a;
+}
+
+@media (max-width: 38rem) {
+  .menu-manager__add {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .menu-manager__item {
+    align-items: flex-start;
+  }
+}

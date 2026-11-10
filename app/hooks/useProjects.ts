@@ -19,7 +19,7 @@ export function useProjects(category?: string) {
         if (!res.ok) throw new Error('Failed to fetch projects');
         
         const data: ProjectsResponse = await res.json();
-        setProjects(data.results || data || []);
+        setProjects(Array.isArray(data) ? data : data.results ?? []);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Unknown error');
       } finally {
@@ -32,4 +32,3 @@ export function useProjects(category?: string) {
 
   return { projects, loading, error, refetch: () => location.reload() };
 }
-

@@ -1,53 +1,198 @@
 @use "../abstracts" as styles;
 
 .site-shell {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-.site-header,
-.site-footer {
-  background-color: var(--color-surface-dark);
+.site-header {
+  position: fixed;
+  z-index: var(--z-index-modal);
+  inset-block-start: 0;
+  inset-inline: 0;
   color: var(--color-surface-light);
 }
 
-.site-header {
-  border-block-end: var(--border-width) solid var(--color-border-dark);
-}
-
-.site-footer {
-  border-block-start: var(--border-width) solid var(--color-border-dark);
-}
-
 .site-header__inner,
-.site-footer__inner,
 .section__inner {
   width: min(100% - var(--space-4), var(--content-width));
   margin-inline: auto;
 }
 
-.site-header__inner,
-.site-footer__inner {
-  padding-block: var(--space-3);
+.site-header__inner {
+  display: flex;
+  min-height: 5.5rem;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.site-header__brand {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-surface-light);
+  text-decoration: none;
+}
+
+.site-header__logo {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+}
+
+.site-header__identity {
+  display: grid;
+  gap: 0.1rem;
 }
 
 .site-header__title {
-  margin-block: 0;
-  color: var(--color-surface-light);
+  margin: 0;
   font-size: var(--font-size-h5);
+  line-height: 1.1;
 }
 
 .site-header__tagline,
 .site-footer__copyright {
-  margin-block: 0;
+  margin: 0;
   color: var(--color-surface-light);
   font-size: var(--font-size-small);
   letter-spacing: var(--letter-spacing-small);
   line-height: var(--line-height-small);
 }
 
-.site-footer__inner--centered {
+.site-header__navigation {
+  display: flex;
+  min-width: 0;
+  flex: 0 1 auto;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(0.75rem, 2.2vw, 2rem);
+  margin-inline-start: auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.site-header__navigation[aria-hidden="true"] {
+  visibility: hidden;
+}
+
+.site-header__navigation a,
+.site-menu-drawer__navigation a {
+  color: var(--color-surface-light);
+  font-size: var(--font-size-small);
+  text-decoration: none;
+  text-underline-offset: 0.3em;
+}
+
+.site-header__navigation a:hover,
+.site-menu-drawer__navigation a:hover {
+  text-decoration: underline;
+}
+
+.site-header__menu-button {
+  display: grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: 0 0 auto;
+  align-content: center;
+  justify-items: center;
+  gap: 0.3rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.site-header__menu-button span {
+  display: block;
+  width: 1.4rem;
+  height: 2px;
+  background: var(--color-surface-light);
+}
+
+.site-header__error {
+  position: absolute;
+  inset-block-start: 100%;
+  inset-inline-end: var(--space-3);
+  max-width: 24rem;
+  padding: var(--space-2) var(--space-3);
+  background: #7b1f26;
+  color: white;
+  font-size: var(--font-size-small);
+}
+
+.site-menu-drawer {
+  position: fixed;
+  z-index: calc(var(--z-index-modal) + 1);
+  inset: 0;
+}
+
+.site-menu-drawer__backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  border: 0;
+  background: rgb(0 0 0 / 68%);
+}
+
+.site-menu-drawer__panel {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  display: flex;
+  width: min(24rem, 88vw);
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-5);
+  overflow-y: auto;
+  background: #080e1d;
+  box-shadow: var(--shadow-large);
+}
+
+.site-menu-drawer__close {
+  align-self: flex-end;
+  padding: var(--space-2) 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-surface-light);
+  cursor: pointer;
+}
+
+.site-menu-drawer__navigation {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.site-menu-drawer__navigation a {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  font-size: var(--font-size-h5);
+}
+
+.site-footer {
+  position: fixed;
+  z-index: var(--z-index-raised);
+  inset-inline: 0;
+  inset-block-end: 0;
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-surface-light);
   text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 180ms ease;
+}
+
+.site-footer--visible {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.site-footer__copyright {
+  color: var(--color-surface-light);
 }
 
 .site-main {
@@ -97,4 +242,10 @@
 .button:hover {
   color: var(--color-primary);
   box-shadow: var(--shadow-medium);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer {
+    transition: none;
+  }
 }

@@ -1,4 +1,6 @@
 import "../src/styles/main.scss";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 import { DM_Serif_Display, Inter_Tight, Oswald } from "next/font/google";
 
 const oswald = Oswald({
@@ -29,20 +31,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body
         className={`${oswald.variable} ${interTight.variable} ${dmSerifDisplay.variable} site-shell`}
       >
-        <header className="site-header">
-          <div className="site-header__inner">
-            <p className="site-header__title">Tiago Ramos</p>
-            <p className="site-header__tagline">Art & Technology</p>
-          </div>
-        </header>
+        <SiteHeader />
         <main className="site-main">{children}</main>
-        <footer className="site-footer">
-          <div className="site-footer__inner site-footer__inner--centered">
-            <p className="site-footer__copyright">
-              © {new Date().getFullYear()} Tiago Ramos & Cosmic Dust — All rights reserved
-            </p>
-          </div>
-        </footer>
+        <SiteFooter />
       </body>
     </html>
   );
